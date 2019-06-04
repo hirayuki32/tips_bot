@@ -3,6 +3,6 @@ from slackbot.bot import listen_to
 import re
 
 
-@respond_to('learn tips(.*) (.*)')
+@respond_to('learn tip(\d*) (.*)')
 def learn_tip(message, tip_number, tip_msg):
     message.reply('I learned tips{} as {}'.format(tip_number, tip_msg))
