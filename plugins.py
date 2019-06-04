@@ -3,8 +3,6 @@ from slackbot.bot import listen_to
 import re
 
 
-@respond_to('hi', re.IGNORECASE)
-def hi(message):
-    message.reply('I can understand hi or HI!')
-    # react with thumb up emoji
-    message.react('+1')
+@respond_to('learn tips(.*) (.*)')
+def learn_tip(message, tip_number, tip_msg):
+    message.reply('I learned tips{} as {}'.format(tip_number, tip_msg))
