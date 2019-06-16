@@ -32,7 +32,7 @@ def _sort_tips(tips_path):
         json.dump(sorted_tips, tips_file, ensure_ascii=False)
 
 
-def update_tips(channel_id, tip_number, tip):
+def update_tip(channel_id, tip_number, tip):
     """
     Parameters
     ----------
