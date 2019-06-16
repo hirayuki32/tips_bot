@@ -1,5 +1,6 @@
 import json
 import os
+import random
 from pathlib import Path
 
 
@@ -100,3 +101,13 @@ def delete_tip(channel_id, tip_number):
     with open(tips_path, "w") as tips_file:
         json.dump(tips_json, tips_file, ensure_ascii=False)
     return target_tip
+
+
+def choose_randomly_from_tips(channel_id):
+    tips_path = "tips/{}.json".format(channel_id)
+    is_exists = os.path.exists(tips_path.format(tips_path))
+    if not is_exists:
+        return "まだtipsはありません。"
+    with open(tips_path, "r") as tips_file:
+        tips_json = json.load(tips_file)
+    return random.choice(list(tips_json.values()))
