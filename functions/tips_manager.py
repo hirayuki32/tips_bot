@@ -15,6 +15,23 @@ def _touch_tips_if_not_exist(tips_path):
         tips_file.write("{}")
 
 
+def _sort_tips(tips_path):
+    """
+    This function is used when referring to tips.
+    """
+    with open(tips_path, "r") as tips_file:
+        tips_json = json.load(tips_file)
+
+    sorted_tips = {}
+    key = 1
+
+    for tip in tips_json.values():
+        sorted_tips[key] = tip
+        key += 1
+    with open(tips_path, "w") as tips_file:
+        json.dump(sorted_tips, tips_file, ensure_ascii=False)
+
+
 def update_tips(channel_id, tip_number, tip):
     """
     Parameters
@@ -45,6 +62,8 @@ def read_tips(channel_id):
     is_exists = os.path.exists(tips_path.format(tips_path))
     if not is_exists:
         return "まだtipsはありません。"
+
+    _sort_tips(tips_path)
 
     with open(tips_path, "r") as tips_file:
         tips_json = json.load(tips_file)
